@@ -1,6 +1,6 @@
 import React,{useContext,useEffect,useState,createContext} from "react";
 
-import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut} from 'firebase/auth';
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,sendPasswordResetEmail} from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -87,13 +87,25 @@ const logout=()=>{
 //chceck logged in
 const isLoggedin=user ? true:false;
 
+//const reset password
+const resetPassword=(email)=>{
+    sendPasswordResetEmail(auth,email).then(()=>{
+        toast.success("Reset Password Link Sent");
+    }).catch((error)=>{
+        const errorCode=error.code;
+        const errorMessage=error.message;
+        console.log(errorCode,errorMessage);
+        toast.error(errorMessage);
+    })
+}
+
 
 
 
 
 
     return(
-        <FirebaseContext.Provider value={{singupwithemailandpassword,loginwithPasswordAndUsername,logout,isLoggedin}}>
+        <FirebaseContext.Provider value={{singupwithemailandpassword,loginwithPasswordAndUsername,logout,isLoggedin,resetPassword}}>
             {props.children}
         </FirebaseContext.Provider>
 

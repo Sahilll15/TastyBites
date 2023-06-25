@@ -12,6 +12,7 @@ import PrivateRoutes from './utils/PrivateRoutes'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from './pages/Register'
+import Resetpassword from './pages/Resetpass'
 
 
 const App = () => {
@@ -30,12 +31,11 @@ const App = () => {
 
             <Route element={<PrivateRoutes />}>
               <Route path="/" element={<Home />} />
-
-
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<ErrorPage />} />
+            <Route path="/resetpass" element={<Resetpassword />} />
           </Routes>
         </div>
       </BrowserRouter>

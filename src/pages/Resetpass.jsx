@@ -9,23 +9,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 
 
-const LoginForm = () => {
+const Resetpassword = () => {
 const navigate=useNavigate();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [viewpass,setviewpass]=useState(false)
+ 
   const Firebase=useFirebase();
   
  
-  
-
-
-
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    Firebase.loginwithPasswordAndUsername(email, password);
+    Firebase.resetPassword(email);
    
    
    
@@ -49,7 +42,7 @@ const navigate=useNavigate();
       </Avatar>
 
           <Typography variant="h4" align="center" gutterBottom>
-            Sign in
+            Reset password
           </Typography>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -63,35 +56,20 @@ const navigate=useNavigate();
                   required
                 />
               </Grid>
+            
               <Grid item xs={12}>
-                <TextField
-                  label="Password"
-                  type={viewpass?"text":"password"}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  fullWidth
-                  required
-                />
-              </Grid>
-              
- 
-              <Grid item xs={12}>
-              <FormControlLabel control={<Checkbox  onClick={()=>setviewpass(!viewpass)} />}  label="View Password" />
+             
                 <Button type="submit" variant="contained" color="primary" fullWidth>
-                  Login
+                  Send Email
                 </Button>
+                <Typography sx={{textAlign:'center'}} >
+            Go back? <NavLink to={'/login'} style={{textDecoration:'none'}}>Login</NavLink>
+          </Typography>
 
               </Grid>
             </Grid>
           </form>
-          <Typography sx={{textAlign:'center'}} >
-            Don't have an account? <NavLink to={'/register'} style={{textDecoration:'none'}}>Register</NavLink>
-          </Typography>
-          <Typography sx={{textAlign:'center'}} >
-            Forgot Password? <NavLink to={'/resetpass'} style={{textDecoration:'none'}}>Reset Password</NavLink>
-          </Typography>
-          
+         
         </Grid>
       </Grid>
       
@@ -101,4 +79,4 @@ const navigate=useNavigate();
   );
 };
 
-export default LoginForm;
+export default Resetpassword;
