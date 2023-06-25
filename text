@@ -1,0 +1,10 @@
+ <div >
+            {recipe.map((map,index)=>(
+                <div key={index}>
+                    <h1>{map.display.displayName}</h1>
+                    <img src={map.display.images} alt="" />
+                </div>
+                
+            ))}
+            <ToastContainer />
+        </div>
